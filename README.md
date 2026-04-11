@@ -16,11 +16,17 @@ This project provides a fully automated deployment of Zabbix using Docker, inclu
 
 
 zabbix-auto/
+
 ├── docker-compose.yaml
+
 ├── install.sh
+
 ├── .env
+
 ├── scripts/
+
 │   ├── init.sh
+
 │   └── zabbix_api.sh
 
 
@@ -29,6 +35,7 @@ zabbix-auto/
 ## ⚙️ Requirements
 
 •⁠  ⁠Ubuntu Server 20.04 / 22.04 / 24.04
+
 •⁠  ⁠Internet access
 
 ---
@@ -57,6 +64,7 @@ http://<VM-IP>:8080
 Login:
 
 •⁠  ⁠Username: Admin
+
 •⁠  ⁠Password: zabbix
 
 ---
@@ -67,6 +75,7 @@ Enable SNMP:
 
 
 /snmp set enabled=yes
+
 /snmp community add name=zabbix-snmp addresses=<zabbix-server-ip>
 
 
@@ -75,7 +84,9 @@ Enable SNMP:
 ## ⚠️ Notes
 
 •⁠  ⁠Wait 30–60 seconds after deployment
+
 •⁠  ⁠Ensure VPN / network connectivity
+
 •⁠  ⁠Change default password after login
 
 ---
