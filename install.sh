@@ -29,7 +29,7 @@ sudo systemctl start docker
 sudo usermod -aG docker $USER
 
 echo "=== RUN ZABBIX ==="
-docker compose up -d
+sudo docker compose up -d
 
 echo "=== DONE ==="
 echo "Akses: http://IP_VM:8080"
