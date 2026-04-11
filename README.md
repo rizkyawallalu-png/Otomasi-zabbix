@@ -36,9 +36,13 @@ zabbix-auto/
 ## ▶️ Deployment
 
 ⁠ bash
+
 git clone https://github.com/rizkyawallalu-png/Otomasi-zabbix.git
+
 cd zabbix-auto
+
 chmod +x install.sh
+
 ./install.sh
  ⁠
 
