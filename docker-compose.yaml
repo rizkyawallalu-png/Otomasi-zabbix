@@ -1,4 +1,3 @@
-
 services:
   postgres-server:
     image: timescale/timescaledb:latest-pg16
@@ -8,8 +7,10 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
     restart: unless-stopped
-
   zabbix-server:
     image: zabbix/zabbix-server-pgsql:alpine-latest
     environment:
@@ -21,8 +22,10 @@ services:
       - "10051:10051"
     depends_on:
       - postgres-server
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
     restart: unless-stopped
-
   zabbix-web:
     image: zabbix/zabbix-web-nginx-pgsql:alpine-latest
     environment:
@@ -36,8 +39,10 @@ services:
       - "8080:8080"
     depends_on:
       - zabbix-server
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
     restart: unless-stopped
-
   zabbix-agent:
     image: zabbix/zabbix-agent:alpine-latest
     environment:
@@ -46,19 +51,23 @@ services:
       ZBX_HOSTNAME: "ZabbixDockerAgent"
     depends_on:
       - zabbix-server
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
     restart: unless-stopped
-
   zabbix-init:
     image: alpine:latest
     depends_on:
       - zabbix-web
     volumes:
       - ./scripts:/scripts
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
     entrypoint: ["/bin/sh", "-c"]
     command: >
       apk add --no-cache curl jq &&
       sleep 40 &&
       sh /scripts/init.sh
-
 volumes:
   postgres_data:
